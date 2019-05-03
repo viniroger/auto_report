@@ -1,5 +1,5 @@
 #!/bin/bash
-## Script para criar PDF a partir de HTML
+## Script to create PDF from HTML
 
 empresa=$1
 variavel='Valores'
@@ -22,7 +22,7 @@ echo "	<li>item 2</li>" >> relatorio.html
 echo "	<li>item 3</li>" >> relatorio.html
 echo "	</ul>" >> relatorio.html
 echo "	<p>Veja a tabela a seguir:</p>" >> relatorio.html
-# Converter CSV de coeficientes para HTML
+# Convert CSV data to HTML
 print_header=false
 nt=1
 for file in `ls output/*/Coeficientes.csv`; do
@@ -42,17 +42,17 @@ for file in `ls output/*/Coeficientes.csv`; do
 	echo "<p class='subtabela'>Tabela "$nt" - números aleatórios entre 0 e 1</p>" >> relatorio.html
 	nt=$(($nt+1))
 done
-# Fim de impressão de tabelas
+# End of table printing
 echo "	<p>Aqui vai um texto bem supimpa.</p>" >> relatorio.html
 echo "	<h3 class='titulo'>Outro tópico</h3>" >> relatorio.html
 echo "	<p>Mais um texto prafrentex.</p>" >> relatorio.html
 nf=1
-# Lista de figuras
+# List of Figures
 for file in `ls output/*/*.png`; do
 	lugar=$(echo $file | awk -F'/' '{print $3}' | awk -F'_' '{print $1}')
 	tipo=$(echo $file | awk -F'/' '{print $2}')
 	regressores=$(echo $file | awk -F'/' '{print $3}' | awk -F'_' '{print $2}' | awk -F'.' '{print $1}')
-	# Imprimir figura
+	# Print figure
 	echo "	<figure>
 			<img src='"$file"'>
 			<figcaption>Fig. "$nf" - Valores em" $lugar": números aleatórios</figcaption>
